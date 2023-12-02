@@ -1,7 +1,7 @@
 part of 'widgets.dart';
 
-class Uiloading{
-  static Container loadingBlock(){
+class UiLoading {
+  static Container loadingBlock() {
     return Container(
       alignment: Alignment.center,
       width: double.infinity,
@@ -10,6 +10,19 @@ class Uiloading{
       child: const SpinKitFadingCircle(
         size: 50,
         color: Colors.purple,
+      ),
+    );
+  }
+
+  static Container loadingSmall() {
+    return Container(
+      alignment: Alignment.center,
+      width: 30,
+      height: 30,
+      color: Colors.transparent,
+      child: const SpinKitFadingCircle(
+        size: 30,
+        color: Color(0xFF00BEFD),
       ),
     );
   }

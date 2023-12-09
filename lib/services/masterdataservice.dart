@@ -43,4 +43,35 @@ class MasterDataService {
 
     return selectedCities;
   }
+
+  // Function Cek Harga
+  static Future<List<Costs>> getCosts(
+      var originId, var destinationId, var weight, var courier) async {
+    final Map<String, dynamic> data = {
+      "origin": originId,
+      "destination": destinationId,
+      "weight": weight.toString(),
+      "courier": courier.toString()
+    };
+
+    var response = await http.post(Uri.https(Const.baseUrl, "/starter/cost"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'key': Const.apiKey,
+        },
+        body: jsonEncode(data));
+
+    var job = json.decode(response.body);
+
+    List<Costs> result = [];
+
+    if (response.statusCode == 200) {
+      result = (job['rajaongkir']['results'][0]['costs'] as List)
+          .map((e) => Costs.fromJson(e))
+          .toList();
+    }else{
+      print('Request failed with status: ${response.statusCode}.');
+    }
+    return result;
+  }
 }

@@ -89,8 +89,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text("Home Page"),
+        title: const Text("Cek OngkirKu"),
         centerTitle: true,
+        backgroundColor: Colors.red[900],
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       body: Stack(
         children: [
@@ -364,15 +370,36 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
 
-                      Spacer(
-                        flex: 3,
-                      ),
                       //button elevated
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          //button red
                           ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.red,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              textStyle: const TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
                             onPressed: () async {
+                              if (beratBarang.text.isEmpty ||
+                                  selectedProvinceOrigin == null ||
+                                  selectedProvinceDestination == null ||
+                                  selectedCityOrigin == null ||
+                                  selectedCityDestination == null ||
+                                  selectedKurir == null) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Harap isi semua data"),
+                                  ),
+                                );
+                                return;
+                              }
+                              
                               setState(() {
                                 isLoading = true;
                               });

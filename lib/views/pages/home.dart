@@ -394,7 +394,7 @@ class _HomePageState extends State<HomePage> {
                                   selectedKurir == null) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                    content: Text("Harap isi semua data"),
+                                    content: Text("Maaf data belum lengkap"),
                                   ),
                                 );
                                 return;
